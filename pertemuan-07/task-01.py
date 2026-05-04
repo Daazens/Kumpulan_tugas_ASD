@@ -64,7 +64,7 @@ class DoubleLinkedList:
 
         print()
 
-nim = #isi nim#
+nim = 250104040089#isi nim#
 
 dll = DoubleLinkedList()
 
