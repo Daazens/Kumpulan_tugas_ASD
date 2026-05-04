@@ -1,55 +1,64 @@
 '''
 nama ada Atma[43], Raya[56], Nirmala[70], Erik[29], Lulu[33], Marin[65], Admiral[48]
 33 = name?
-data != linear
+data != linear > linear search
 '''
+data = [
+        ["Atma", 43],
+        ["Raya", 56],
+        ["Nirmala", 70],
+        ["Erik", 29],
+        ["Lulu", 33],
+        ["Marin", 65],
+        ["Admiral", 48]
+        ]
 
-name_data = ["Atma", "Raya", "Nirmala", "Erik", "Lulu", "Marin", "Admiral"]
-nim_data = [43, 56, 70, 29, 33, 65, 48]
 look = 33
 start = 0
-end = len(nim_data) - 1 
+end = len(data) - 1
 found = False
 
-def linear_search(nim, name,look):
+def linear_search(data, look):
     step = 0
-    for i in range(len(nim)):
+    find = ''
+    for i in range(len(data)):
         step += 1
-        if nim[i] == look:
-            print(f'lama > {step}')
-            print(f'data > {name[i]}|{nim[i]}')
+        if data[i][1] == look:
+            find += f'{data[i][0]}|{data[i][1]}\nstep > {step}'
+            return find
+    return None
 
-def bubble_sort(data1, data2):
-    for i in range(len(data1)):
-        for j in range(len(data1)):
-            if data1[i] < data1[j]:
-                temp1 = data1[i]
-                data1[i] = data1[j]
-                data1[j] = temp1
-                temp2 = data2[i]
-                data2[i] = data2[j]
-                data2[j] = temp2
+def bubble_sort(data):
+    for i in range(len(data)):
+        for j in range(len(data)):
+            if data[i] > data[j]:
+                temp = data[i]
+                data[i] = data[j]
+                data[j] = temp
 
-def binary_search(data1, data2, look, start, end, found):
+def binary_search(data, look, start, end, found):
     step = 0
+    find = ''
     while not found and start <= end:
-        search = (start + end) // 2 
         step += 1
-        if data1[search] == look:
+        search = (start + end) // 2 
+        if data[search][1] == look:
             found = True
-        elif data1[search] > look:
-            end = search - 1 
+            find += f'{data[search][0]}|{data[search][1]}\nstep > {step}'
+            return find
+        elif data[search][1] > look:
+            end = start - 1
         else:
-            start = search + 1 
-    if found:
-        print(f'lama > {step}')
-        print(f'name > {data2[search]}|{data1[search]}')
-    else:
-        print('not found')
+            start = end + 1
+    return None
 
-print('Linear search')
-linear_search(nim_data, name_data, look)
+linear = linear_search(data, look)
+print(f'linear:\n{linear}')
 
-print('\nBinary search (sorted by bubble sort)')
-bubble_sort(nim_data, name_data)
-binary_search(nim_data, name_data, look, start, end, found)
+
+bubble_sort(data)
+print('\nsorted by bubble sort\n')
+
+binary = binary_search(data, look, start, end, found)
+print(f'binary:\n{binary}')
+
