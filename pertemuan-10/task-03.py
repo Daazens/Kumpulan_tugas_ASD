@@ -29,12 +29,16 @@ def linear_search(data, look):
     return None
 
 def bubble_sort(data):
+    step = 0
     for i in range(len(data)):
-        for j in range(len(data)):
-            if data[i] > data[j]:
-                temp = data[i]
-                data[i] = data[j]
-                data[j] = temp
+        for j in range(len(data) - i - 1):
+            step += 1
+            if data[j] > data[j + 1]:
+                temp = data[j]
+                data[j] = data[j + 1]
+                data[j + 1] = temp
+
+    return step
 
 def binary_search(data, look, start, end, found):
     step = 0
@@ -56,9 +60,9 @@ linear = linear_search(data, look)
 print(f'linear:\n{linear}')
 
 
-bubble_sort(data)
-print('\nsorted by bubble sort\n')
+step = bubble_sort(data)
+print(f'\nsorted by bubble sort\n')
 
 binary = binary_search(data, look, start, end, found)
-print(f'binary:\n{binary}')
+print(f'binary:\n{binary} + {step} (sorting)')
 
